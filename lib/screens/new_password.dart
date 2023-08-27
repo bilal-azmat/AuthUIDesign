@@ -1,4 +1,3 @@
-
 import 'package:auth_ui_tutorial/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,21 +13,22 @@ class NewPasswordScreen extends StatefulWidget {
 }
 
 class _NewPasswordScreenState extends State<NewPasswordScreen> {
-  final TextEditingController passwordController=TextEditingController();
-  final TextEditingController confirmPasswordController=TextEditingController();
+  final TextEditingController passwordController = TextEditingController();
+  final TextEditingController confirmNewPasswordController =
+      TextEditingController();
 
-  bool passwordVisible=false;
-  bool confirmPasswordVisible=false;
+  bool passwordVisible = false;
+  bool confirmNewPasswordVisible = false;
 
-
-  void togglePassword(){
+  void togglePassword() {
     setState(() {
-      passwordVisible=!passwordVisible;
+      passwordVisible = !passwordVisible;
     });
   }
-  void toggleConfirmPassword(){
+
+  void toggleConfirmPassword() {
     setState(() {
-      confirmPasswordVisible=!confirmPasswordVisible;
+      confirmNewPasswordVisible = !confirmNewPasswordVisible;
     });
   }
 
@@ -40,67 +40,71 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(24,48,24,0),
+            padding: const EdgeInsets.fromLTRB(24, 48, 24, 0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text("Set New Password on Your\nEmail",
+                    Text(
+                      "Set New Password on Your\nEmail",
                       style: heading2.copyWith(color: textBlack),
-
                     ),
-                    SizedBox(height: 20,),
-                    Image.asset('assets/images/accent.png',
+                    SizedBox(
+                      height: 20,
+                    ),
+                    Image.asset(
+                      'assets/images/accent.png',
                       width: 99,
                       height: 4,
                     )
                   ],
                 ),
-                SizedBox(height: 48,),
+                SizedBox(
+                  height: 48,
+                ),
                 Form(
                   child: Column(
                     children: [
-
                       InputField(
-                          obscureText: passwordVisible,
-                          hintText: 'Password', suffixIcon: IconButton(
-                        color: textGrey,
-                        splashRadius: 1,
-                        icon: Icon(passwordVisible?Icons.visibility_outlined
-                            : Icons.visibility_off_outlined
-                        ), onPressed: togglePassword,
-                      ),
-
+                        obscureText: passwordVisible,
+                          hintText: 'New Password',
+                          suffixIcon: IconButton(
+                            color: textGrey,
+                            splashRadius: 1,
+                            icon: Icon(passwordVisible
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined),
+                            onPressed: togglePassword,
+                          ),
                           controller: passwordController),
-                      SizedBox(height: 24,),
-                      InputField(
-                          obscureText: confirmPasswordVisible,
-                          hintText: 'Confirm Password', suffixIcon: IconButton(
-                        color: textGrey,
-                        splashRadius: 1,
-                        icon: Icon(confirmPasswordVisible?Icons.visibility_outlined
-                            : Icons.visibility_off_outlined
-                        ), onPressed: toggleConfirmPassword,
+                      SizedBox(
+                        height: 24,
                       ),
-
-                          controller: confirmPasswordController),
-
-                      SizedBox(height: 24,),
-
-
+                      InputField(
+                        obscureText: confirmNewPasswordVisible,
+                          hintText: 'Confirm New Password',
+                          suffixIcon: IconButton(
+                            color: textGrey,
+                            splashRadius: 1,
+                            icon: Icon(confirmNewPasswordVisible
+                                ? Icons.visibility_outlined
+                                : Icons.visibility_off_outlined),
+                            onPressed: toggleConfirmPassword,
+                          ),
+                          controller: confirmNewPasswordController),
                     ],
                   ),
                 ),
-                SizedBox(height: 30,),
-                CustomPrimaryButton(buttonColor: primaryBlue, textValue: 'Update Password', textColor: Colors.white, onPressed: (){
-
-                }),
-
-
-
-
+                SizedBox(
+                  height: 48,
+                ),
+                CustomPrimaryButton(
+                    buttonColor: primaryBlue,
+                    textValue: 'Update Password',
+                    textColor: Colors.white,
+                    onPressed: () {}),
               ],
             ),
           ),

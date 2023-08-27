@@ -14,16 +14,8 @@ class ForgotPasswordScreen extends StatefulWidget {
 }
 
 class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
+  final TextEditingController emailController = TextEditingController();
 
-  final TextEditingController emailController=TextEditingController();
-  final TextEditingController passwordController=TextEditingController();
-  bool passwordVisible=false;
-
-  void togglePassword(){
-    setState(() {
-      passwordVisible=!passwordVisible;
-    });
-  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,34 +23,51 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       backgroundColor: Colors.white,
       body: SafeArea(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(24,48,24,0),
+          padding: const EdgeInsets.fromLTRB(24, 48, 24, 0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Enter you email \naccount",
+                  Text(
+                    "Enter Your email \naccount",
                     style: heading2.copyWith(color: textBlack),
-
                   ),
-                  SizedBox(height: 20,),
-                  Image.asset('assets/images/accent.png',
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Image.asset(
+                    'assets/images/accent.png',
                     width: 99,
                     height: 4,
                   )
                 ],
               ),
-              SizedBox(height: 48,),
-              InputField(hintText: 'Email', suffixIcon: SizedBox(), controller: emailController),
-              SizedBox(height: 30,),
-              CustomPrimaryButton(buttonColor: primaryBlue, textValue: 'Validate Email', textColor: Colors.white, onPressed: (){
-               Navigator.push(context, MaterialPageRoute(builder: (context)=>NewPasswordScreen()));
-              }),
-
-
-
-
+              SizedBox(
+                height: 48,
+              ),
+              Column(
+                children: [
+                  InputField(
+                      hintText: 'Email',
+                      suffixIcon: SizedBox(),
+                      controller: emailController),
+                ],
+              ),
+              SizedBox(
+                height: 30,
+              ),
+              CustomPrimaryButton(
+                  buttonColor: primaryBlue,
+                  textValue: 'Validate Email',
+                  textColor: Colors.white,
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => NewPasswordScreen()));
+                  }),
             ],
           ),
         ),
